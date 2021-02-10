@@ -16,8 +16,7 @@ class models_genesis_config:
     
     # data
     variety = 3
-    #datasets=['luna16', 'ctpa', 'dsb17', 'lits17', 'lndb19', 'kits19', 'rsnastr20']
-    datasets=['luna16', 'ctpa', 'dsb17', 'lits17', 'lndb19', 'kits19']
+    datasets=['luna16', 'ctpa', 'dsb17', 'lits17', 'lndb19', 'kits19', 'rsnastr20']
     luna16_data = '/mnt/dataset/shared/zongwei/LUNA16'
     ctpa_data = '/mnt/dataset/Lung/PE/PE_detection_2016/dicom'
     dsb17_data = '/mnt/dataset/shared/zongwei/dsb2017/dsb2017-lung-data/stage1-mnt'

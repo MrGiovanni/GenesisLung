@@ -123,9 +123,9 @@ def display_ct_volume(vol, cols=15, title=None, cf=2, rf=2):
         plt.axis('off')
     plt.show()
     
-def visualization_for_debug(view_ct=True, view_xray=True, view_fxray=True, 
-                            data_loader=None, config=None, cols=32,
-                           ):
+def chest_ct_visualization(view_ct=True, view_xray=True, view_fxray=True, 
+                           data_loader=None, config=None, cols=32,
+                          ):
     assert data_loader is not None
     if data_loader == 'luna16':
         vol = luna16_data_loader(config)
