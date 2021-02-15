@@ -1,14 +1,6 @@
 import os
 import shutil
 
-'''
-Build a collection of datasets for Holy Grail
-scp -r /mnt/dataset/Lung/PE/PE_detection_2016/dicom zzhou82@agave.asu.edu:/scratch/zzhou82/holy_grail/ctpa
-scp -r /mnt/dataset/shared/zongwei/dsb2017/dsb2017-lung-data/stage1-mnt zzhou82@agave.asu.edu:/scratch/zzhou82/holy_grail/dsb17
-scp -r /mnt/dataset/shared/zongwei/LiTS/Tr zzhou82@agave.asu.edu:/scratch/zzhou82/holy_grail/lits17
-scp -r /mnt/dataset/shared/zongwei/kits19 zzhou82@agave.asu.edu:/scratch/zzhou82/holy_grail/kits19
-'''
-
 class models_genesis_config:
     model = 'Vnet'
     suffix = 'genesis_chest_ct'
@@ -42,12 +34,12 @@ class models_genesis_config:
     weights = None
     batch_size = 12
     optimizer = 'sgd'
-    workers = 18
+    workers = 8
     max_queue_size = workers * 8
     save_samples = 'png'
     nb_epoch = 10000
     patience = 50
-    lr = 1.
+    lr = 0.1
     steps_per_epoch = 200
     validation_steps = 200
 

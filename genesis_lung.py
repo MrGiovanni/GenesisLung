@@ -6,6 +6,9 @@ from __future__ import print_function
 python -W ignore genesis_lung.py --gpu 0 --weights None --data /data/jliang12/zzhou82/holy_grail
 '''
 
+# TODO
+# Examine data loader efficiency and improve its speed for each dataset.
+
 
 import warnings
 warnings.filterwarnings('ignore')
