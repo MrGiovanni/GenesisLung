@@ -12,5 +12,5 @@ pandas
 pydicom
 nibabel
 
-tensorflow-gpu==1.14.0
+tensorflow-gpu==1.8.0
 keras==2.2.4
