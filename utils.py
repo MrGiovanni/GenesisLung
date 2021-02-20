@@ -626,6 +626,10 @@ def generate_subvolume(config, vol, within_lung=0.75):
                        cz-crop_deps//2:cz+crop_deps//2,
                       ]
         crop_vol = resize(crop_vol, (config.input_rows,config.input_cols,config.input_deps), anti_aliasing=True)
+        
+        if np.max(crop_vol) < 0.6:
+            continue
+            
         subvol[num_subvol] = crop_vol
         num_subvol += 1
         cnt = 0
