@@ -4,9 +4,9 @@
 ##SBATCH --mem-per-cpu 50000 
 ##SBATCH -p gpu 
 ##SBATCH -p physicsgpu1                                                         
-##SBATCH -p sulcgpu2                                                            
+#SBATCH -p sulcgpu2                                                            
 ##SBATCH -p rcgpu1
-#SBATCH -p mrlinegpu1                                                            
+##SBATCH -p mrlinegpu1                                                            
 ##SBATCH -p asinghargpu1                                                         
 ##SBATCH -p sulcgpu1                                                            
 ##SBATCH -p cidsegpu1                                                           
@@ -26,4 +26,5 @@ module unload python/.2.7.14-tf18-gpu
 /packages/7x/python/3.6.5-tf18-gpu/bin/python3 -m pip install --upgrade pip --user
 /packages/7x/python/3.6.5-tf18-gpu/bin/python3 -m pip install --upgrade pylibjpeg pylibjpeg-libjpeg pydicom --user
 
+mkdir logs pair_samples
 python3.6 -W ignore genesis_lung.py --data $1 --weights $2
