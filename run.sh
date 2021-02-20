@@ -4,12 +4,12 @@
 ##SBATCH --mem-per-cpu 50000 
 ##SBATCH -p gpu 
 ##SBATCH -p physicsgpu1                                                         
-#SBATCH -p sulcgpu2                                                            
+##SBATCH -p sulcgpu2                                                            
 ##SBATCH -p rcgpu1
 ##SBATCH -p mrlinegpu1                                                            
 ##SBATCH -p asinghargpu1                                                         
 ##SBATCH -p sulcgpu1                                                            
-##SBATCH -p cidsegpu1                                                           
+#SBATCH -p cidsegpu1                                                           
 #SBATCH -q wildfire
 ##SBATCH -p jlianggpu1                                                          
 ##SBATCH -q jliang12                                                             
