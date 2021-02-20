@@ -111,9 +111,9 @@ def get_segmented_lungs(raw_im, plot=False):
         
     return binary
 
-def display_ct_volume(vol, cols=15, title=None, cf=2, rf=2):
+def display_ct_volume(vol, cols=15, title=None, cf=1., rf=1.):
     rows = vol.shape[-1] // cols + 1
-    plt.figure(figsize=(cols*cf, rows*rf))
+    plt.figure(figsize=(max(int(cols*cf), 1), max(int(rows*rf), 1)))
     plt.subplots_adjust(wspace=0.01, hspace=0.1)
     if title is not None:
         print(title)
@@ -575,21 +575,22 @@ def generate_subvolume(config, vol, within_lung=0.75):
 
     border_px = 10
     rows, cols, deps = vol.shape
-    if config.input_rows//2+border_px >= rows-config.input_rows//2-border_px:
-        return None
-    if config.input_cols//2+border_px >= cols-config.input_cols//2-border_px:
-        return None
-    if config.input_deps//2+border_px >= deps-config.input_deps//2-border_px:
-        return None
     
-    subvol = np.zeros((config.num_subvol_per_patient, config.input_rows, config.input_cols, config.input_deps), dtype=float)
+    subvol = np.zeros((config.num_subvol_per_patient, 
+                       config.input_rows, 
+                       config.input_cols, 
+                       config.input_deps), dtype=float)
 
+    ''' Find lung area
     lung_mask = np.zeros((vol.shape), dtype='int')
     for z in range(config.input_deps//2+border_px, deps-config.input_deps//2-border_px, 1):
         lung_mask[:,:,z] = get_segmented_lungs(vol[:,:,z]*2000.0-1000)
+        
     if np.sum(lung_mask) < 100:
         return None
+    
     lung_coordinate = np.where(lung_mask == True)
+    '''
     
     num_subvol = 0
     cnt = 0
@@ -598,6 +599,7 @@ def generate_subvolume(config, vol, within_lung=0.75):
         if cnt > config.num_subvol_per_patient * 10:
             return None
         
+        ''' Extract from lung
         if random.random() < within_lung:
             cx, cy, cz = choose_from_lung(lung_coordinate, 
                                           rows, cols, deps,
@@ -609,13 +611,23 @@ def generate_subvolume(config, vol, within_lung=0.75):
                                             config.input_rows, config.input_cols, config.input_deps,
                                             border_px,
                                            )
-                                           
-        crop_vol = vol[cx-config.input_rows//2:cx+config.input_rows//2,
-                       cy-config.input_cols//2:cy+config.input_cols//2,
-                       cz-config.input_deps//2:cz+config.input_deps//2,
+        '''
+        crop_rows = random.randint(config.crop_rows_min, min(rows - 8*border_px, config.crop_rows_max))
+        crop_cols = random.randint(config.crop_cols_min, min(cols - 8*border_px, config.crop_cols_max))
+        crop_deps = random.randint(config.crop_deps_min, min(deps - 2*border_px, config.crop_deps_max))
+        
+        
+        cx, cy, cz = choose_from_volume(rows, cols, deps,
+                                        crop_rows, crop_cols, crop_deps,
+                                        border_px,
+                                       ) 
+        crop_vol = vol[cx-crop_rows//2:cx+crop_rows//2,
+                       cy-crop_cols//2:cy+crop_cols//2,
+                       cz-crop_deps//2:cz+crop_deps//2,
                       ]
-        subvol[num_subvol] = crop_vol  
-        num_subvol += 1  
+        crop_vol = resize(crop_vol, (config.input_rows,config.input_cols,config.input_deps), anti_aliasing=True)
+        subvol[num_subvol] = crop_vol
+        num_subvol += 1
         cnt = 0
 
         if num_subvol == config.num_subvol_per_patient:
