@@ -9,6 +9,7 @@ import string
 import pandas as pd
 import pydicom
 from tqdm import tqdm
+from numpy.random import choice
 import numpy as np
 import SimpleITK as sitk
 import nibabel as nib
@@ -629,7 +630,7 @@ def generate_subvolume(config, vol, within_lung=0.75):
         
         if np.max(crop_vol) < 0.6:
             continue
-            
+        
         subvol[num_subvol] = crop_vol
         num_subvol += 1
         cnt = 0
@@ -684,9 +685,18 @@ def generate_pair(config, status=None):
         img = collect_subvol(config=config)
         # print('img: {} | {} ~ {}'.format(img.shape, np.min(img), np.max(img)))
 
-        index = [i for i in range(img.shape[0])]
-        random.shuffle(index)
-        y = img[index[:config.batch_size]]
+        avg_img = [np.mean(img[i]) for i in range(img.shape[0])]
+        temp = [list(img[i].flatten()) for i in range(img.shape[0])]
+        ent_img = [scipy.stats.entropy(temp[i], base=10) for i in range(img.shape[0])]
+        metric = [ent_img[i] / avg_img[i] for i in range(img.shape[0])]
+
+        sum_distribution = sum(metric)
+        probability_distribution = [i / sum_distribution for i in metric]
+        list_of_candidates = [i for i in range(img.shape[0])]
+        batch_index = choice(list_of_candidates, config.batch_size,
+                             p=probability_distribution, replace=False)
+
+        y = img[batch_index]
         x = copy.deepcopy(y)
         for n in range(config.batch_size):
             
