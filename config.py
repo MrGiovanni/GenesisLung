@@ -19,7 +19,7 @@ class models_genesis_config:
 
     hu_min = -1000.0
     hu_max = 1000.0
-    num_subvol_per_patient = 12
+    num_subvol_per_patient = 10
     hu_thred = (-150.0 - hu_min) / (hu_max - hu_min)
     lung_max = 0.15
     len_vision = 3
