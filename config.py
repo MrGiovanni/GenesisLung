@@ -19,7 +19,7 @@ class models_genesis_config:
 
     hu_min = -1000.0
     hu_max = 1000.0
-    num_subvol_per_patient = 6
+    num_subvol_per_patient = 12
     hu_thred = (-150.0 - hu_min) / (hu_max - hu_min)
     lung_max = 0.15
     len_vision = 3
@@ -66,6 +66,9 @@ class models_genesis_config:
             self.rsnastr20_data = os.path.join(self.data, 'rsnastr20')
         if args.weights is not None and args.weights != 'None':
             self.weights = args.weights
+            
+        if self.batch_size >= self.variety * self.num_subvol_per_patient:
+            self.num_subvol_per_patient = int(1.5 * self.batch_size) // self.variety
 
         # logs
         self.model_path = 'pretrained_weights'
