@@ -735,6 +735,50 @@ def generate_pair(config, status=None):
             imageio.imwrite(os.path.join(config.sample_path, config.exp_name, file_name), final_sample)
 
         yield (x, y)
+        
+def generate_pair_eval(config, status=None):
+    assert status is not None
+
+    img = collect_subvol(config=config)
+    # print('img: {} | {} ~ {}'.format(img.shape, np.min(img), np.max(img)))
+
+    avg_img = [np.mean(img[i]) for i in range(img.shape[0])]
+    temp = [list(img[i].flatten()) for i in range(img.shape[0])]
+    ent_img = [scipy.stats.entropy(temp[i], base=10) for i in range(img.shape[0])]
+    metric = [ent_img[i] / avg_img[i] for i in range(img.shape[0])]
+
+    sum_distribution = sum(metric)
+    probability_distribution = [i / sum_distribution for i in metric]
+    list_of_candidates = [i for i in range(img.shape[0])]
+    batch_index = choice(list_of_candidates, config.batch_size,
+                         p=probability_distribution, replace=False)
+
+    y = img[batch_index]
+    x = copy.deepcopy(y)
+    for n in range(config.batch_size):
+
+        # Autoencoder
+        x[n] = copy.deepcopy(y[n])
+
+        # Flip
+        x[n], y[n] = data_augmentation(x[n], y[n], config.flip_rate)
+
+        # Local Shuffle Pixel
+        x[n] = local_pixel_shuffling(x[n], prob=config.local_rate)
+
+        # Apply non-Linear transformation with an assigned probability
+        x[n] = nonlinear_transformation(x[n], config.nonlinear_rate)
+
+        # Inpainting & Outpainting
+        if random.random() < config.paint_rate:
+            if random.random() < config.inpaint_rate:
+                # Inpainting
+                x[n] = image_in_painting(x[n])
+            else:
+                # Outpainting
+                x[n] = image_out_painting(x[n])
+
+    return (x, y)
 
 if __name__ == '__main__':
     from config import models_genesis_config
