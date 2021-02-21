@@ -109,7 +109,7 @@ while conf.batch_size > 1:
                             epochs=conf.nb_epoch,
                             max_queue_size=conf.max_queue_size, 
                             workers=conf.workers, 
-                            use_multiprocessing=True, 
+                            use_multiprocessing=conf.use_multiprocessing,
                             shuffle=True,
                             verbose=conf.verbose, 
                             callbacks=callbacks,

@@ -69,6 +69,13 @@ class models_genesis_config:
             
         if self.batch_size >= self.variety * self.num_subvol_per_patient:
             self.num_subvol_per_patient = int(1.5 * self.batch_size) // self.variety
+            
+        if self.workers == 1:
+            self.use_multiprocessing = False
+        elif self.workers > 1:
+            self.use_multiprocessing = True
+        else:
+            raise
 
         # logs
         self.model_path = 'pretrained_weights'
