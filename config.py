@@ -38,7 +38,8 @@ class models_genesis_config:
     last_activation = 'sigmoid'
     batch_size = 12
     optimizer = 'sgd'
-    workers = 8
+    use_multiprocessing = False
+    workers = 1
     max_queue_size = workers * 8
     save_samples = 'png'
     nb_epoch = 10000
