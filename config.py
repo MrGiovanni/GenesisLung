@@ -44,7 +44,7 @@ class models_genesis_config:
     save_samples = 'png'
     nb_epoch = 10000
     patience = 50
-    lr = 0.1
+    lr = 1.0
     steps_per_epoch = 200
     validation_steps = 200
 
