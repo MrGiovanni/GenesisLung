@@ -45,7 +45,7 @@ class models_genesis_config:
     nb_epoch = 10000
     patience = 50
     lr = 1.0
-    steps_per_epoch = 200
+    steps_per_epoch = 50
     validation_steps = 200
 
     # image deformation
