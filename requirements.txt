@@ -11,6 +11,8 @@ matplotlib
 pandas
 pydicom
 nibabel
+pylibjpeg
+pylibjpeg-libjpeg
 
 tensorflow-gpu==1.8.0
 keras==2.2.4
