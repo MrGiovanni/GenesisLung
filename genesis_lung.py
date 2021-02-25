@@ -3,6 +3,7 @@
 from __future__ import print_function
 
 ''' Terminal
+mkdir logs pair_samples
 python -W ignore genesis_lung.py --gpu 0 --weights None --data /data/jliang12/zzhou82/holy_grail
 sbatch --error=logs/genesis_lung.out --output=logs/genesis_lung.out run.sh /data/jliang12/zzhou82/holy_grail None
 '''
