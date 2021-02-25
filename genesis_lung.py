@@ -3,6 +3,7 @@
 from __future__ import print_function
 
 ''' Terminal
+mkdir logs pair_samples
 python -W ignore genesis_lung.py --gpu 0 --weights None --data /data/jliang12/zzhou82/holy_grail
 sbatch --error=logs/genesis_lung.out --output=logs/genesis_lung.out run.sh /data/jliang12/zzhou82/holy_grail None
 '''
@@ -53,7 +54,7 @@ conf.display()
 if conf.model == 'Vnet':
     model = unet_model_3d((1, conf.input_rows, conf.input_cols, conf.input_deps),
                           batch_normalization=True,
-                          activation_name="sigmoid",
+                          activation_name=conf.last_activation,
                          )
 if conf.weights is not None:
     print('Load the pre-trained weights from {}'.format(conf.weights))

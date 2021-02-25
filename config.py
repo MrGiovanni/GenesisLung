@@ -35,15 +35,17 @@ class models_genesis_config:
     # model pre-training
     verbose = 1
     weights = None
+    last_activation = 'sigmoid'
     batch_size = 12
     optimizer = 'sgd'
-    workers = 8
+    use_multiprocessing = False
+    workers = 1
     max_queue_size = workers * 8
     save_samples = 'png'
     nb_epoch = 10000
     patience = 50
-    lr = 0.1
-    steps_per_epoch = 200
+    lr = 1.0
+    steps_per_epoch = 50
     validation_steps = 200
 
     # image deformation
