@@ -1,6 +1,6 @@
 #!/bin/bash                                                                     
 #SBATCH -N 1                                                                    
-#SBATCH -n 12                                                                    
+#SBATCH -n 8                                                                    
 ##SBATCH --mem-per-cpu 50000 
 ##SBATCH -p gpu 
 ##SBATCH -p physicsgpu1                                                         
@@ -20,11 +20,11 @@
 #SBATCH --mail-type=END,FAIL                                                    
 #SBATCH --mail-user=zzhou82@asu.edu                                             
                                                                                                       
-module load tensorflow/1.8-agave-gpu                                            
-module unload python/.2.7.14-tf18-gpu
+             
+module load anaconda/py3
 
-/packages/7x/python/3.6.5-tf18-gpu/bin/python3 -m pip install --upgrade pip --user
-/packages/7x/python/3.6.5-tf18-gpu/bin/python3 -m pip install --upgrade pylibjpeg pylibjpeg-libjpeg pydicom --user
+source /data/jliang12/zzhou82/environments/pytorch/bin/activate
+nvidia-smi
 
-#mkdir logs pair_samples
-python3.6 -W ignore genesis_lung.py --data $1 --weights $2
+mkdir logs pair_samples
+python -W ignore genesis_lung.py --data $1 --weights $2
