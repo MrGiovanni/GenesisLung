@@ -35,6 +35,7 @@ class models_genesis_config:
     # model pre-training
     verbose = 1
     weights = None
+    last_activation = 'sigmoid'
     batch_size = 12
     optimizer = 'sgd'
     workers = 8
