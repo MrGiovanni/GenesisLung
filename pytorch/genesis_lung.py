@@ -1,6 +1,10 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+'''
+mkdir logs pair_samples pretrained_weights
+sbatch --error=logs/genesis_lung.out --output=logs/genesis_lung.out run.sh /data/jliang12/zzhou82/holy_grail None
+'''
 
 import warnings
 warnings.filterwarnings('ignore')
