@@ -11,7 +11,7 @@ from torchsummary import summary
 import sys
 import argparse
 from utils import *
-import unet3d_pytorch as unet3d
+import unet3d
 from config import models_genesis_config
 from tqdm import tqdm
 
