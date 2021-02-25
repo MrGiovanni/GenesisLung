@@ -15,7 +15,7 @@ from torchsummary import summary
 import sys
 import argparse
 from utils import *
-import unet3d
+from unet3d import *
 from config import models_genesis_config
 from tqdm import tqdm
 
@@ -39,7 +39,7 @@ validation_generator = generate_pair_custom_loss(conf, status='val')
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-model = unet3d.UNet3D()
+model = UNet3D()
 model.to(device)
 
 print("Total CUDA devices: ", torch.cuda.device_count())
