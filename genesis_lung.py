@@ -53,7 +53,7 @@ conf.display()
 if conf.model == 'Vnet':
     model = unet_model_3d((1, conf.input_rows, conf.input_cols, conf.input_deps),
                           batch_normalization=True,
-                          activation_name="linear",
+                          activation_name="sigmoid",
                          )
 if conf.weights is not None:
     print('Load the pre-trained weights from {}'.format(conf.weights))
