@@ -13,6 +13,7 @@ pydicom
 nibabel
 pylibjpeg
 pylibjpeg-libjpeg
+torchsummary
 
 tensorflow-gpu==1.8.0
 keras==2.2.4
