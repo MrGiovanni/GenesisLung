@@ -155,8 +155,8 @@ for epoch in range(intial_epoch, conf.nb_epoch):
             'epoch': epoch+1,
             'state_dict' : model.state_dict(),
             'optimizer_state_dict': optimizer.state_dict()
-        },os.path.join(conf.model_path, "Genesis_Chest_CT"+str(epoch+1)+".pt"))
-        print("Saving model ",os.path.join(conf.model_path,"Genesis_Chest_CT"+str(epoch+1)+".pt"))
+        },os.path.join(conf.model_path, "Genesis_Chest_CT_ep"+str(epoch+1)+".pt"))
+        print("Saving model ",os.path.join(conf.model_path,"Genesis_Chest_CT_ep"+str(epoch+1)+".pt"))
     else:
         print("Validation loss does not decrease from {:.4f}, num_epoch_no_improvement {}".format(best_loss,num_epoch_no_improvement))
         num_epoch_no_improvement += 1
