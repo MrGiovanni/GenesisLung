@@ -1,6 +1,6 @@
 #!/bin/bash                                                                     
 #SBATCH -N 1                                                                    
-#SBATCH -n 12                                                                    
+#SBATCH -n 4                                                                    
 ##SBATCH --mem-per-cpu 50000 
 ##SBATCH -p gpu 
 ##SBATCH -p physicsgpu1                                                         
