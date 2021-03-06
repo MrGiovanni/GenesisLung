@@ -53,7 +53,8 @@ class models_genesis_config:
     paint_rate = 0.9
     outpaint_rate = 0.8
     inpaint_rate = 1.0 - outpaint_rate
-    local_rate = 0.0
+    local_rate = 0.2
+    elastic_rate = 0.2
     flip_rate = 0.4
     
     def __init__(self, args):

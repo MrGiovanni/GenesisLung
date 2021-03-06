@@ -15,6 +15,9 @@ import SimpleITK as sitk
 import nibabel as nib
 from glob import glob
 from scipy import ndimage
+from scipy.misc import comb
+from scipy.ndimage.filters import gaussian_filter
+from scipy.ndimage.interpolation import map_coordinates
 from skimage.transform import resize
 try:  # SciPy >= 0.19
     from scipy.special import comb
@@ -203,6 +206,22 @@ def data_augmentation(x, y, prob=0.5):
         cnt = cnt - 1
 
     return x, y
+
+def elastic_transform(image):
+    alpha = 991
+    sigma = 8
+    random_state = np.random.RandomState(None)
+    shape_mrht = np.shape(image)
+
+    dx = gaussian_filter((random_state.rand(*shape_mrht) * 2 - 1), sigma, mode="constant", cval=0) * alpha
+    dy = gaussian_filter((random_state.rand(*shape_mrht) * 2 - 1), sigma, mode="constant", cval=0) * alpha
+    dz = np.zeros_like(dx)
+
+    x, y, z = np.meshgrid(np.arange(shape_mrht[0]), np.arange(shape_mrht[1]), np.arange(shape_mrht[2]))
+    indices = np.reshape(y + dy, (-1, 1)), np.reshape(x + dx, (-1, 1)), np.reshape(z, (-1, 1))
+    transformed_image = map_coordinates(image, indices, order=1, mode='reflect').reshape(shape_mrht)
+    
+    return transformed_image
 
 def nonlinear_transformation(x, prob=0.5):
     if random.random() >= prob:
@@ -720,6 +739,10 @@ def generate_pair(config, status=None):
                 else:
                     # Outpainting
                     x[n] = image_out_painting(x[n])
+
+            # Elastic transform
+            if random.random() < config.elastic_rate:
+            	x[n] = elastic_transform(x[n])
 
         # Save sample images module
         if config.save_samples is not None and status == 'train' and random.random() < config.sample_png_rate:
