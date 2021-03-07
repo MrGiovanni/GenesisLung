@@ -742,7 +742,7 @@ def generate_pair(config, status=None):
 
             # Elastic transform
             if random.random() < config.elastic_rate:
-            	x[n] = elastic_transform(x[n])
+            	x[n, 0] = elastic_transform(x[n, 0])
 
         # Save sample images module
         if config.save_samples is not None and status == 'train' and random.random() < config.sample_png_rate:
