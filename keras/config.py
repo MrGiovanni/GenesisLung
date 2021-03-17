@@ -30,7 +30,7 @@ class models_genesis_config:
     crop_cols_min, crop_cols_max = 32, 128
     crop_deps_min, crop_deps_max = 16, 64
     nb_class = 1
-    sample_png_rate = 0.01
+    sample_png_rate = 0.05
     
     # model pre-training
     verbose = 1
