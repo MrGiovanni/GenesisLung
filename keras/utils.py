@@ -15,7 +15,6 @@ import SimpleITK as sitk
 import nibabel as nib
 from glob import glob
 from scipy import ndimage
-from scipy.misc import comb
 from scipy.ndimage.filters import gaussian_filter
 from scipy.ndimage.interpolation import map_coordinates
 from skimage.transform import resize
