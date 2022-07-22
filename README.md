@@ -14,4 +14,5 @@
 
 ## 1. Download Data Assembly
 
+- 01 Multi-Atlas Labeling.zip (1.53 GB): ```wget https://www.dropbox.com/s/fstlfocrpayyp0j/01%20Multi-Atlas%20Labeling.zip?dl=0```
 - 03 CHAOS.zip (925.3 MB): ```wget https://www.dropbox.com/s/qtdg8q9b4lvfizr/03%20CHAOS.zip?dl=0```
