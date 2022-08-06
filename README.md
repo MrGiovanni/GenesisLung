@@ -14,11 +14,16 @@
 
 ## 1. Download Data Assembly
 
-- 01 Multi-Atlas Labeling.zip (1.53 GB): ```wget https://www.dropbox.com/s/fstlfocrpayyp0j/01%20Multi-Atlas%20Labeling.zip```
-- 02 TCIA Pancreas-CT.zip (4.53 GB): ```wget https://www.dropbox.com/s/df3bylearr4ncdw/02%20TCIA%20Pancreas-CT.zip```
-- 03 CHAOS.zip (925.3 MB): ```wget https://www.dropbox.com/s/qtdg8q9b4lvfizr/03%20CHAOS.zip```
-- 04 LiTS.zip (16.22 GB): ```wget https://www.dropbox.com/s/w1tg8xfxhsycrf3/04%20LiTS.zip```
-- 07 WORD.zip (4.94 GB): ```wget https://www.dropbox.com/s/v95n62pzb79obvx/07%20WORD.zip```
-- 08 AbdomenCT-1K.zip (76.87 GB): ```wget https://www.dropbox.com/s/enec1fw0u4o80sw/08%20AbdomenCT-1K.zip```
-- 09 AMOS.zip (8.21 GB): ```wget https://www.dropbox.com/s/f7guyo6i5awuu7f/09%20AMOS.zip```
-- 12 CT-ORG.zip (2.42 GB): ```wget https://www.dropbox.com/s/m33cd8hm1114stg/12%20CT-ORG.zip```
+```tar -xzvf name.tar.gz```
+
+- 01 Multi-Atlas_Labeling.tar.gz (1.53 GB): ```wget https://www.dropbox.com/s/jnv74utwh99ikus/01_Multi-Atlas_Labeling.tar.gz```
+- 02 TCIA_Pancreas-CT.tar.gz (7.51 GB): ```wget https://www.dropbox.com/s/5yzdzb7el9r3o9i/02_TCIA_Pancreas-CT.tar.gz```
+- 03 CHAOS.tar.gz (925.3 MB): ```wget https://www.dropbox.com/s/lzrhirei2t2vuwg/03_CHAOS.tar.gz```
+- 04 LiTS.tar.gz (17.42 GB): ```wget https://www.dropbox.com/s/2i19kuw7qewzo6q/04_LiTS.tar.gz```
+- 05 KiTS.tar.gz (28.04 GB)```wget https://www.dropbox.com/s/l2bvis2pjlcyas7/05_KiTS.tar.gz```
+- 07 WORD.tar.gz (5.31 GB): ```wget https://www.dropbox.com/s/toavg919niykblq/07_WORD.tar.gz```
+- 08 AbdomenCT-1K.tar.gz (82.54 GB): ```wget https://www.dropbox.com/s/70e3df92w3imggh/08_AbdomenCT-1K.tar.gz```
+- 09 AMOS.tar.gz (8.81 GB): ```wget https://www.dropbox.com/s/7ro2nsmhf1cq2xn/09_AMOS.tar.gz```
+- 10 Decathlon.tar.gz (75.31 GB): ```wget https://www.dropbox.com/s/e7yq57esg3sci3m/10_Decathlon.tar.gz```
+- 12 CT-ORG.tar.gz (18.03 GB): ```wget https://www.dropbox.com/s/x6slst6kt9pdg2t/12_CT-ORG.tar.gz```
+- 13 AbdomenCT-12organ.tar.gz: ```wget https://www.dropbox.com/s/6vp6o8tydb8waby/13_AbdomenCT-12organ.tar.gz```
